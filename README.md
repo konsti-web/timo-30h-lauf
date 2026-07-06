@@ -1,5 +1,8 @@
 # Timo läuft 30h – Öschlesee 🏃🌙
 
+**Live: https://konsti-web.github.io/timo-30h-lauf/** — jeder Push auf `main`
+deployt automatisch via GitHub Actions.
+
 Installierbare PWA für den 30-Stunden-Lauf von Timo Wassermann um den Öschlesee
 (Sulzberg, Oberallgäu): Countdown, unkomplizierte Anmeldung, Runden-Tracking,
 Live-Leaderboard, Community-Ziel, Karte mit echter Strecke, Badges und
