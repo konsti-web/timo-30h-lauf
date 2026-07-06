@@ -17,13 +17,14 @@ npm run dev        # → http://localhost:5173
 
 Die App läuft sofort im **Demo-Modus** (Daten nur auf dem eigenen Gerät).
 
-## ⚠️ Vor dem Event: 2 Dinge prüfen
+## Event-Daten
 
-1. **Startdatum** in [`src/config.ts`](src/config.ts): eingetragen ist
-   **Sa, 15.08.2026, 08:00 Uhr**. (Hinweis: „17.08." wäre 2026 ein Montag.)
-2. **Rundenlänge** `lapKm`: aktuell 3,0 km – die tatsächliche Rundweg-Länge
-   vor Ort messen und ggf. anpassen. Alles andere (Ziel-km, Instagram-Handle,
-   Events) steht ebenfalls in dieser einen Datei.
+Start: **Fr, 17.07.2026, 15:00 Uhr** (30 h → Ende Sa, 21:00 Uhr), konfiguriert in
+[`src/config.ts`](src/config.ts). Dort steht auch alles andere (Rundenlänge,
+Ziel-km, Instagram-Handle, Events).
+
+⚠️ **Rundenlänge** `lapKm`: aktuell 3,0 km geschätzt – die tatsächliche
+Rundweg-Länge vor Ort messen und ggf. anpassen.
 
 ## Echtes Live-Leaderboard aktivieren (Supabase, ~10 Minuten)
 

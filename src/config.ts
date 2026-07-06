@@ -1,16 +1,13 @@
 /**
  * ⚙️ ZENTRALE EVENT-KONFIGURATION
  * Alles, was sich vor dem Event noch ändern kann, steht hier an EINEM Ort.
- *
- * ⚠️ Startdatum: Der User sagte „Samstag 17.08." – der 17.08.2026 ist aber ein
- * Montag. Eingetragen ist Sa, 15.08.2026, 08:00 Uhr. Sobald das Datum fix ist,
- * nur die Zeile `startISO` ändern.
  */
 export const EVENT = {
   runnerName: 'Timo Wassermann',
   title: 'Timo läuft 30h',
   subtitle: 'Nonstop um den Öschlesee',
-  startISO: '2026-08-15T08:00:00+02:00',
+  /** Start: Freitag, 17. Juli 2026, 15:00 Uhr → Ende: Samstag, 21:00 Uhr */
+  startISO: '2026-07-17T15:00:00+02:00',
   durationHours: 30,
   /** Rundenlänge in km – Rundweg vor Ort verifizieren (Ufer ≈ 3,4 km) */
   lapKm: 3.0,
