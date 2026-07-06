@@ -1,0 +1,59 @@
+/**
+ * ⚙️ ZENTRALE EVENT-KONFIGURATION
+ * Alles, was sich vor dem Event noch ändern kann, steht hier an EINEM Ort.
+ *
+ * ⚠️ Startdatum: Der User sagte „Samstag 17.08." – der 17.08.2026 ist aber ein
+ * Montag. Eingetragen ist Sa, 15.08.2026, 08:00 Uhr. Sobald das Datum fix ist,
+ * nur die Zeile `startISO` ändern.
+ */
+export const EVENT = {
+  runnerName: 'Timo Wassermann',
+  title: 'Timo läuft 30h',
+  subtitle: 'Nonstop um den Öschlesee',
+  startISO: '2026-08-15T08:00:00+02:00',
+  durationHours: 30,
+  /** Rundenlänge in km – Rundweg vor Ort verifizieren (Ufer ≈ 3,4 km) */
+  lapKm: 3.0,
+  location: 'Öschlesee, Sulzberg (Oberallgäu)',
+  /** Gemeinsames Community-Ziel in km (alle Teilnehmer zusammen) */
+  communityGoalKm: 1000,
+  instagram: 'timo.wassermann',
+  /** Kartenzentrum + Zoom */
+  map: { center: [47.6798, 10.3373] as [number, number], zoom: 15 },
+  /** Start/Ziel-Punkt an der Strecke */
+  startFinish: [47.6736, 10.3333] as [number, number],
+} as const
+
+export const EVENT_START = new Date(EVENT.startISO)
+export const EVENT_END = new Date(
+  EVENT_START.getTime() + EVENT.durationHours * 3600_000,
+)
+
+/** Kommende Club-Events (Running-Club-Fundament) */
+export const UPCOMING_EVENTS = [
+  {
+    id: 'timo-30h-2026',
+    date: EVENT.startISO,
+    title: 'Timo läuft 30h – Öschlesee',
+    description:
+      '30 Stunden nonstop. Lauf so viele Runden mit, wie du willst – jede zählt fürs Community-Ziel.',
+    location: 'Öschlesee, Sulzberg',
+    highlight: true,
+  },
+  {
+    id: 'social-run-1',
+    date: '2026-09-05T09:00:00+02:00',
+    title: 'Social Run – Auslaufen & Brunch',
+    description: 'Lockere 5 km, danach gemeinsames Frühstück. Alle Tempos willkommen.',
+    location: 'Öschlesee, Sulzberg',
+    highlight: false,
+  },
+  {
+    id: 'trail-herbst',
+    date: '2026-10-10T10:00:00+02:00',
+    title: 'Herbst-Trailrun Allgäu',
+    description: 'Gemeinsamer Trail über die Allgäuer Hügel – Details folgen.',
+    location: 'Sulzberg',
+    highlight: false,
+  },
+]
