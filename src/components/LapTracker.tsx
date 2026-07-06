@@ -1,7 +1,11 @@
-import { useState } from 'react'
+import { useEffect, useRef, useState } from 'react'
 import type { EventPhase, Participant } from '../types'
 import { EVENT } from '../config'
 import { formatKm } from '../lib/stats'
+import { computeBadges } from '../lib/badges'
+import { fireConfetti } from '../lib/confetti'
+import { shareCard } from '../lib/shareCard'
+import { Splits } from './Splits'
 
 export function LapTracker({
   me,
@@ -17,6 +21,18 @@ export function LapTracker({
   const [busy, setBusy] = useState(false)
   const laps = me.laps.length
   const km = laps * EVENT.lapKm
+  const badges = computeBadges({ laps: me.laps, lapKm: EVENT.lapKm })
+
+  // Konfetti bei neuem Badge oder erreichtem Rundenziel
+  const prevBadges = useRef(badges.length)
+  const prevLaps = useRef(laps)
+  useEffect(() => {
+    const newBadge = badges.length > prevBadges.current
+    const goalHit = me.goalLaps !== undefined && laps === me.goalLaps && prevLaps.current < laps
+    if (newBadge || goalHit) fireConfetti()
+    prevBadges.current = badges.length
+    prevLaps.current = laps
+  }, [badges.length, laps, me.goalLaps])
 
   async function run(action: () => Promise<void>) {
     setBusy(true)
@@ -44,6 +60,12 @@ export function LapTracker({
           <div className="v">{formatKm(km)} km</div>
           <div className="k">Distanz</div>
         </div>
+        {badges.length > 0 && (
+          <div className="stat">
+            <div className="v">{badges.map((b) => b.emoji).join(' ')}</div>
+            <div className="k">Badges</div>
+          </div>
+        )}
         {me.goalLaps ? (
           <div className="stat">
             <div className="v">
@@ -73,6 +95,14 @@ export function LapTracker({
         </>
       )}
 
+      {laps > 0 && (
+        <div className="share-row">
+          <button className="btn btn-ghost" onClick={() => shareCard(me, badges)}>
+            ✨ Story-Bild teilen
+          </button>
+        </div>
+      )}
+
       {me.goalLaps ? (
         <div className="goal-bar">
           <div className="bar">
@@ -88,6 +118,8 @@ export function LapTracker({
           </div>
         </div>
       ) : null}
+
+      <Splits me={me} />
     </div>
   )
 }

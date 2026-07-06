@@ -1,5 +1,5 @@
 import { describe, it, expect } from 'vitest'
-import { computeCountdown, eventPhase, formatElapsed, eventProgress } from './time'
+import { computeCountdown, eventPhase, formatElapsed, eventProgress, formatRelative } from './time'
 
 const start = new Date('2026-08-15T08:00:00+02:00')
 const end = new Date('2026-08-16T14:00:00+02:00') // +30h
@@ -40,6 +40,15 @@ describe('formatElapsed', () => {
   })
   it('klemmt bei Gesamtdauer', () => {
     expect(formatElapsed(new Date('2026-08-17T00:00:00+02:00'), start, end)).toBe('30:00:00')
+  })
+})
+
+describe('formatRelative', () => {
+  const now = new Date('2026-08-15T12:00:00+02:00')
+  it('staffelt eben/Minuten/Stunden', () => {
+    expect(formatRelative('2026-08-15T11:59:30+02:00', now)).toBe('gerade eben')
+    expect(formatRelative('2026-08-15T11:55:00+02:00', now)).toBe('vor 5 Min')
+    expect(formatRelative('2026-08-15T09:00:00+02:00', now)).toBe('vor 3 Std')
   })
 })
 

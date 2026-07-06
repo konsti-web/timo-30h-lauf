@@ -32,6 +32,15 @@ export function eventProgress(now: Date, start: Date, end: Date): number {
   return Math.min(1, Math.max(0, (now.getTime() - start.getTime()) / total))
 }
 
+/** "gerade eben", "vor 5 Min", "vor 3 Std" – für den Live-Feed */
+export function formatRelative(iso: string, now: Date): string {
+  const diffSec = Math.max(0, Math.floor((now.getTime() - Date.parse(iso)) / 1000))
+  if (diffSec < 60) return 'gerade eben'
+  if (diffSec < 3600) return `vor ${Math.floor(diffSec / 60)} Min`
+  if (diffSec < 86400) return `vor ${Math.floor(diffSec / 3600)} Std`
+  return `vor ${Math.floor(diffSec / 86400)} Tagen`
+}
+
 export function formatDateDE(iso: string): string {
   return new Date(iso).toLocaleDateString('de-DE', {
     weekday: 'long',

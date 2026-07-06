@@ -1,7 +1,10 @@
+import { useState } from 'react'
 import type { Participant } from '../types'
 import { EVENT } from '../config'
-import { buildLeaderboard, formatKm } from '../lib/stats'
+import { buildLeaderboard, formatKm, type LeaderboardRow } from '../lib/stats'
 import { computeBadges } from '../lib/badges'
+
+const COLLAPSED_COUNT = 10
 
 const AVATAR_HUES = [14, 32, 158, 205, 260, 288, 340]
 
@@ -24,7 +27,16 @@ function initials(name: string) {
 const MEDALS = ['🥇', '🥈', '🥉']
 
 export function Leaderboard({ participants, meId }: { participants: Participant[]; meId?: string }) {
+  const [expanded, setExpanded] = useState(false)
   const rows = buildLeaderboard(participants, EVENT.lapKm)
+
+  // Eingeklappt: Top 10 – die eigene Zeile bleibt aber immer sichtbar
+  let shown: LeaderboardRow[] = rows
+  if (!expanded && rows.length > COLLAPSED_COUNT + 2) {
+    shown = rows.slice(0, COLLAPSED_COUNT)
+    const meRow = rows.find((r) => r.participant.id === meId)
+    if (meRow && !shown.includes(meRow)) shown = [...shown, meRow]
+  }
 
   if (rows.length === 0) {
     return (
@@ -38,7 +50,7 @@ export function Leaderboard({ participants, meId }: { participants: Participant[
 
   return (
     <div className="card board">
-      {rows.map((r) => {
+      {shown.map((r) => {
         const badges = computeBadges({ laps: r.participant.laps, lapKm: EVENT.lapKm })
         return (
           <div
@@ -79,6 +91,11 @@ export function Leaderboard({ participants, meId }: { participants: Participant[
           </div>
         )
       })}
+      {rows.length > COLLAPSED_COUNT + 2 && (
+        <button className="board-toggle" onClick={() => setExpanded(!expanded)}>
+          {expanded ? 'Weniger anzeigen' : `Alle ${rows.length} Läufer:innen anzeigen`}
+        </button>
+      )}
     </div>
   )
 }

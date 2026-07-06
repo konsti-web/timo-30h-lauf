@@ -1,5 +1,6 @@
 import type { Participant } from '../types'
 import type { RegisterInput, Store } from './types'
+import { generateDemoParticipants, isDemo } from '../lib/demo'
 
 const KEY = 'timo30h.participants.v1'
 const CHANNEL = 'timo30h-sync'
@@ -60,6 +61,20 @@ export class LocalAdapter implements Store {
     if (!p || p.laps.length === 0) return
     p.laps.pop()
     this.write(all)
+  }
+
+  /** Demo-Community einspielen (nur LocalAdapter) – zeigt die App „voll" */
+  async loadDemo(): Promise<void> {
+    const real = read().filter((p) => !isDemo(p))
+    this.write([...real, ...generateDemoParticipants()])
+  }
+
+  async clearDemo(): Promise<void> {
+    this.write(read().filter((p) => !isDemo(p)))
+  }
+
+  hasDemo(): boolean {
+    return read().some(isDemo)
   }
 
   subscribe(onChange: () => void): () => void {

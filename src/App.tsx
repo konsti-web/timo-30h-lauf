@@ -3,6 +3,7 @@ import type { EventPhase, Participant } from './types'
 import { EVENT, EVENT_START, EVENT_END } from './config'
 import { eventPhase } from './lib/time'
 import { createStore, type RegisterInput } from './store'
+import { LocalAdapter } from './store/local'
 import { Hero } from './components/Hero'
 import { RegisterForm } from './components/RegisterForm'
 import { LapTracker } from './components/LapTracker'
@@ -12,6 +13,8 @@ import { EventInfo } from './components/EventInfo'
 import { BadgeWall } from './components/BadgeWall'
 import { EventsList } from './components/EventsList'
 import { LiveBanner } from './components/LiveBanner'
+import { Feed } from './components/Feed'
+import { InstallButton } from './components/InstallButton'
 
 const ME_KEY = 'timo30h.me.v1'
 
@@ -82,12 +85,15 @@ export default function App() {
           <a href="#strecke">Strecke</a>
           <a href="#events">Events</a>
         </nav>
-        {phase === 'live' && (
-          <span className="live-pill">
-            <span className="live-dot" />
-            Live
-          </span>
-        )}
+        <span className="topbar-right">
+          <InstallButton />
+          {phase === 'live' && (
+            <span className="live-pill">
+              <span className="live-dot" />
+              Live
+            </span>
+          )}
+        </span>
       </header>
 
       <main className="shell">
@@ -95,10 +101,19 @@ export default function App() {
 
         {phase === 'live' && <LiveBanner />}
 
-        {!store.shared && (
+        {store instanceof LocalAdapter && (
           <p className="demo-note">
-            ⚠️ Demo-Modus: Daten bleiben nur auf diesem Gerät. Für das gemeinsame
-            Live-Leaderboard Supabase aktivieren (siehe README).
+            ⚠️ Demo-Modus: Daten bleiben nur auf diesem Gerät – das echte gemeinsame
+            Leaderboard kommt mit Supabase.{' '}
+            {store.hasDemo() ? (
+              <button className="demo-link" onClick={() => store.clearDemo().then(refresh)}>
+                Demo-Community entfernen
+              </button>
+            ) : (
+              <button className="demo-link" onClick={() => store.loadDemo().then(refresh)}>
+                Demo-Community laden
+              </button>
+            )}
           </p>
         )}
 
@@ -131,7 +146,13 @@ export default function App() {
               ? 'Aktualisiert sich live, während gelaufen wird.'
               : 'Alle angemeldeten Läufer:innen und ihre Runden.'}
           </p>
-          <Leaderboard participants={participants} meId={meId} />
+          <div className="board-grid">
+            <Leaderboard participants={participants} meId={meId} />
+            <div>
+              <h3 className="feed-title">⚡️ Live-Ticker</h3>
+              <Feed participants={participants} />
+            </div>
+          </div>
         </section>
 
         <section id="strecke">
