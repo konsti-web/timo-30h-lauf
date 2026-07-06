@@ -29,11 +29,11 @@ export function renderShareCard(me: Participant, badges: Badge[]): HTMLCanvasEle
   ctx.fillRect(0, 0, W, H)
 
   const font = (px: number, weight = 700) =>
-    `${weight} ${px}px 'Space Grotesk Variable', system-ui, sans-serif`
+    `${weight} ${px}px -apple-system, 'Helvetica Neue', sans-serif`
 
   // Kicker
   ctx.textAlign = 'center'
-  ctx.fillStyle = '#ff7a45'
+  ctx.fillStyle = '#ff7a33'
   ctx.font = font(38, 600)
   ctx.fillText('T I M O   L Ä U F T   3 0 H   ·   Ö S C H L E S E E', W / 2, 220)
 
@@ -48,7 +48,7 @@ export function renderShareCard(me: Participant, badges: Badge[]): HTMLCanvasEle
 
   // Große Zahl
   const laps = me.laps.length
-  ctx.fillStyle = '#ff5a1f'
+  ctx.fillStyle = '#fc5200'
   ctx.font = font(380)
   ctx.fillText(String(laps), W / 2, 900)
   ctx.fillStyle = '#eef2fb'
@@ -61,7 +61,7 @@ export function renderShareCard(me: Participant, badges: Badge[]): HTMLCanvasEle
   ctx.beginPath()
   ctx.arc(W / 2, 780, 330, 0, Math.PI * 2)
   ctx.stroke()
-  ctx.strokeStyle = '#ff5a1f'
+  ctx.strokeStyle = '#fc5200'
   ctx.lineCap = 'round'
   ctx.beginPath()
   ctx.arc(W / 2, 780, 330, -Math.PI / 2, -Math.PI / 2 + Math.PI * 1.4)
@@ -86,7 +86,7 @@ export function renderShareCard(me: Participant, badges: Badge[]): HTMLCanvasEle
   ctx.fillStyle = 'rgba(255,255,255,0.55)'
   ctx.font = font(40, 500)
   ctx.fillText(`30 Stunden nonstop mit ${EVENT.runnerName}`, W / 2, 1720)
-  ctx.fillStyle = '#ff7a45'
+  ctx.fillStyle = '#ff7a33'
   ctx.font = font(42, 600)
   ctx.fillText(`@${EVENT.instagram}`, W / 2, 1790)
 

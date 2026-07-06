@@ -20,8 +20,8 @@ export const EVENT = {
   instagram: 'timo.wassermann',
   /** Kartenzentrum + Zoom */
   map: { center: [47.6798, 10.3373] as [number, number], zoom: 15 },
-  /** Start/Ziel-Punkt an der Strecke */
-  startFinish: [47.6736, 10.3333] as [number, number],
+  /** Start/Ziel-Punkt an der Strecke (Südwest-Ufer, nahe Campingplatz) */
+  startFinish: [47.676518, 10.334434] as [number, number],
 } as const
 
 export const EVENT_START = new Date(EVENT.startISO)

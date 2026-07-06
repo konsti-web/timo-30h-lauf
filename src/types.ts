@@ -17,6 +17,8 @@ export interface Participant {
 
 export type EventPhase = 'before' | 'live' | 'after'
 
+export type Tab = 'home' | 'map' | 'track' | 'board' | 'profile'
+
 export interface Countdown {
   days: number
   hours: number
