@@ -45,10 +45,12 @@ describe('formatElapsed', () => {
 
 describe('formatRelative', () => {
   const now = new Date('2026-08-15T12:00:00+02:00')
-  it('staffelt eben/Minuten/Stunden', () => {
+  it('staffelt eben/Minuten/Stunden/Tage', () => {
     expect(formatRelative('2026-08-15T11:59:30+02:00', now)).toBe('gerade eben')
     expect(formatRelative('2026-08-15T11:55:00+02:00', now)).toBe('vor 5 Min')
     expect(formatRelative('2026-08-15T09:00:00+02:00', now)).toBe('vor 3 Std')
+    expect(formatRelative('2026-08-14T10:00:00+02:00', now)).toBe('vor 1 Tag')
+    expect(formatRelative('2026-08-12T10:00:00+02:00', now)).toBe('vor 3 Tagen')
   })
 })
 

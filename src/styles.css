@@ -509,6 +509,55 @@ body {
 .live-progress .bar { height: 8px; border-radius: 999px; background: #eee9e6; overflow: hidden; }
 .live-progress .fill { height: 100%; background: var(--green); border-radius: 999px; transition: width 1s linear; }
 
+/* ── Sponsoren-Marquee ── */
+.marquee {
+  overflow: hidden;
+  margin: 0 -16px;
+  padding: 6px 0 4px;
+  -webkit-mask-image: linear-gradient(90deg, transparent, #000 12%, #000 88%, transparent);
+  mask-image: linear-gradient(90deg, transparent, #000 12%, #000 88%, transparent);
+}
+.marquee-track {
+  display: flex;
+  width: max-content;
+  animation: marquee-scroll 22s linear infinite;
+  will-change: transform;
+}
+.marquee:hover .marquee-track,
+.marquee:active .marquee-track { animation-play-state: paused; }
+/* Liste ist doppelt im Track → -50 % = exakt eine Listenbreite = nahtlos */
+@keyframes marquee-scroll {
+  to { transform: translateX(-50%); }
+}
+@media (prefers-reduced-motion: reduce) {
+  .marquee-track { animation: none; flex-wrap: wrap; width: auto; }
+}
+.sponsor-chip {
+  display: flex; align-items: center; gap: 11px;
+  background: var(--card);
+  border: 1px solid var(--border);
+  border-radius: 999px;
+  padding: 8px 20px 8px 9px;
+  box-shadow: 0 1px 4px rgba(0, 0, 0, 0.04);
+  flex-shrink: 0;
+  margin-right: 12px;
+}
+.sponsor-mono {
+  position: relative;
+  width: 40px; height: 40px; border-radius: 50%;
+  display: grid; place-items: center;
+  color: #fff; font-weight: 800; font-size: 1rem;
+  letter-spacing: -0.02em;
+}
+.sponsor-dot {
+  position: absolute; right: -1px; bottom: -1px;
+  width: 13px; height: 13px; border-radius: 50%;
+  border: 2.5px solid var(--card);
+}
+.sponsor-text { line-height: 1.15; }
+.sponsor-text b { display: block; font-size: 0.95rem; font-weight: 800; letter-spacing: -0.01em; }
+.sponsor-text small { color: var(--text-faint); font-size: 0.72rem; font-weight: 600; text-transform: uppercase; letter-spacing: 0.07em; }
+
 .hint-note {
   font-size: 0.78rem; color: var(--text-faint);
   text-align: center; margin: 6px 0 0; padding: 0 8px;

@@ -4,6 +4,7 @@ import { EVENT, EVENT_START, EVENT_END, UPCOMING_EVENTS } from '../config'
 import { computeCountdown, eventProgress, formatDateDE, formatElapsed, formatRelative, formatTimeDE } from '../lib/time'
 import { computeTotals, formatKm } from '../lib/stats'
 import { Avatar } from '../components/Avatar'
+import { SponsorMarquee } from '../components/SponsorMarquee'
 
 function useNow(intervalMs: number): Date {
   const [now, setNow] = useState(() => new Date())
@@ -179,6 +180,9 @@ export function HomeScreen({
           </div>
         </div>
       </div>
+
+      <div className="section-label">Unterstützt von</div>
+      <SponsorMarquee />
 
       <div className="section-label">Live-Ticker</div>
       <div className="card">

@@ -26,6 +26,13 @@ export const EVENT_END = new Date(
   EVENT_START.getTime() + EVENT.durationHours * 3600_000,
 )
 
+/** Sponsoren – laufen als Marquee-Slider auf dem Home-Screen */
+export const SPONSORS = [
+  { id: 'redbull', name: 'Red Bull', category: 'Energy', mono: 'RB', from: '#001a4d', to: '#0a3ba8', accent: '#e30613' },
+  { id: 'abt', name: 'ABT', category: 'Automobile', mono: 'A', from: '#111111', to: '#333333', accent: '#e2001a' },
+  { id: 'cordella', name: 'Cordella', category: 'Eis', mono: 'C', from: '#ff7ab8', to: '#ffb3d4', accent: '#7a3e2e' },
+] as const
+
 /** Kommende Club-Events (Running-Club-Fundament) */
 export const UPCOMING_EVENTS = [
   {

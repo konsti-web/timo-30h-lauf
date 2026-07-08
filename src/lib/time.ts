@@ -38,7 +38,8 @@ export function formatRelative(iso: string, now: Date): string {
   if (diffSec < 60) return 'gerade eben'
   if (diffSec < 3600) return `vor ${Math.floor(diffSec / 60)} Min`
   if (diffSec < 86400) return `vor ${Math.floor(diffSec / 3600)} Std`
-  return `vor ${Math.floor(diffSec / 86400)} Tagen`
+  const days = Math.floor(diffSec / 86400)
+  return days === 1 ? 'vor 1 Tag' : `vor ${days} Tagen`
 }
 
 export function formatDateDE(iso: string): string {
