@@ -33,6 +33,10 @@ export default defineConfig({
         ],
       },
       workbox: {
+        // Neue Version sofort aktivieren, alte Caches wegräumen
+        skipWaiting: true,
+        clientsClaim: true,
+        cleanupOutdatedCaches: true,
         globPatterns: ['**/*.{js,css,html,svg,png,woff2}'],
         runtimeCaching: [
           {
