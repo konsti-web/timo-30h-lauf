@@ -14,7 +14,7 @@ export default defineConfig({
         name: 'Timo läuft 30h – Öschlesee',
         short_name: 'Timo 30h',
         description:
-          '30 Stunden nonstop um den Öschlesee. Lauf mit, zähl deine Runden, sei Teil der Community.',
+          '30 Stunden um den Öschlesee. Lauf mit, zähl deine Runden, sei Teil der Community.',
         theme_color: '#f5f5f4',
         background_color: '#f5f5f4',
         display: 'standalone',

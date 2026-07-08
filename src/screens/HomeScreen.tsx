@@ -118,7 +118,7 @@ export function HomeScreen({
             {phase === 'after' && 'Geschafft! 🎉'}
           </div>
           <h2>
-            {EVENT.durationHours} Stunden nonstop
+            {EVENT.durationHours} Stunden
             <br />
             um den Öschlesee
           </h2>

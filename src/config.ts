@@ -5,7 +5,7 @@
 export const EVENT = {
   runnerName: 'Timo Wassermann',
   title: 'Timo läuft 30h',
-  subtitle: 'Nonstop um den Öschlesee',
+  subtitle: 'Um den Öschlesee',
   /** Start: Freitag, 17. Juli 2026, 15:00 Uhr → Ende: Samstag, 21:00 Uhr */
   startISO: '2026-07-17T15:00:00+02:00',
   durationHours: 30,
@@ -33,7 +33,7 @@ export const UPCOMING_EVENTS = [
     date: EVENT.startISO,
     title: 'Timo läuft 30h – Öschlesee',
     description:
-      '30 Stunden nonstop. Lauf so viele Runden mit, wie du willst – jede zählt fürs Community-Ziel.',
+      '30 Stunden am Stück. Lauf so viele Runden mit, wie du willst – jede zählt fürs Community-Ziel.',
     location: 'Öschlesee, Sulzberg',
     highlight: true,
   },

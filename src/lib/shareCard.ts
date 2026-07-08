@@ -85,7 +85,7 @@ export function renderShareCard(me: Participant, badges: Badge[]): HTMLCanvasEle
   // Fußzeile
   ctx.fillStyle = 'rgba(255,255,255,0.55)'
   ctx.font = font(40, 500)
-  ctx.fillText(`30 Stunden nonstop mit ${EVENT.runnerName}`, W / 2, 1720)
+  ctx.fillText(`30 Stunden mit ${EVENT.runnerName}`, W / 2, 1720)
   ctx.fillStyle = '#ff7a33'
   ctx.font = font(42, 600)
   ctx.fillText(`@${EVENT.instagram}`, W / 2, 1790)
